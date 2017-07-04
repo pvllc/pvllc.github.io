@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Peter Velez Engineering LLC</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Project Description">
+	<meta name="author" content="Michael Velez">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />			
+	<!--[if IE]><link href="css/style-ie.css" rel="stylesheet" type="text/css" /><![endif]-->	
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/site.js"></script>
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	
+	<script type="text/javascript">
+		//email form validation
+
+		function everif(str) {
+
+				var at="@"
+				var punct="."
+				var lat=str.indexOf(at)
+				var lstr=str.length
+				var lpunct=str.indexOf(punct)
+				if (str.indexOf(at)==-1){
+				   alert("Valid email must be entered")
+				   return false
+				}
+
+				if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+				   alert("Valid email must be entered")
+				   return false
+				}
+
+				if (str.indexOf(punct)==-1 || str.indexOf(punct)==0 || str.indexOf(punct)==lstr){
+					alert("Valid email must be entered")
+					return false
+				}
+
+				 if (str.indexOf(at,(lat+1))!=-1){
+					alert("Valid email must be entered")
+					return false
+				 }
+
+				 if (str.substring(lat-1,lat)==punct || str.substring(lat+1,lat+2)==punct){
+					alert("Valid email must be entered")
+					return false
+				 }
+
+				 if (str.indexOf(punct,(lat+2))==-1){
+					alert("Valid email must be entered")
+					return false
+				 }
+				
+				 if (str.indexOf(" ")!=-1){
+					alert("Valid email must be entered")
+					return false
+				 }
+
+				 return true					
+			}
+
+		function evalid(){
+			var emailID=document.contact_form.mail
+			
+			if (everif(emailID.value)==false){
+				emailID.focus()
+				return false
+			}
+			
+		//empty field validation
+			
+			var fname=document.contact_form.fname
+			if ((fname.value==null)||(fname.value=="")){
+				alert("Fields marqued with * must be entered")
+				fname.focus()
+				return false
+				}
+			
+			var subject=document.contact_form.subject	
+			if ((subject.value==null)||(subject.value=="")){
+				alert("Fields marqued with * must be entered")
+				subject.focus()
+				return false
+				}
+		 
+			var message=document.contact_form.message	
+			if ((message.value==null)||(message.value=="")){
+				alert("Fields marqued with * must be entered")
+				message.focus()
+				return false
+				}
+					
+			return true
+		 }
+		 </script>
+</head>
+<body>
+
+<div id="wrapper">
+	<header id="header">
+		<section id="logo">
+			<h1><a href="index/html">Peter Velez Engineering LLC</a></h1>
+			<p><!-- YOUR SLOGAN TEXT HERE --></p>
+		</section>
+		<ul id="nav">
+			<li><a href="index.html">HOME</a></li>
+			<li><a href="services.html">SERVICES</a></li>
+			<li><a href="about.html">ABOUT</a></li>
+			<li class="active"><a href="contact.html">CONTACT</a></li>
+		</ul>
+	</header><!-- // end #header -->
+	<section id="banner">
+		<h1>Safety <span>Takes Preparation</span></h1>
+		<img src="images/Banner.png" alt="Banner">
+	</section><!-- // end #banner -->
+	<div id="main-body" class="clearfix">
+		<div id="content">
+			<article>
+				<h1>Send E-Mail</h1>
+				<form name="contact_form" method="post" action="mailer.php" onSubmit="return evalid()">
+					<table border="0">
+						<tr>
+							<td>Name *</td>
+							<td colspan="2"><input name="fname" type="text" size="30" /></td>
+						</tr>
+						<tr>
+							<td>Your E-mail *</td>
+							<td colspan="2"><input type="text" name="mail" size="30" /></td>
+						</tr>
+						<tr>
+							<td>Country</td>
+							<td colspan="2"><input name="country" type="text" size="30" /></td>
+						</tr>
+						<tr>
+							<td>Phone</td>
+							<td colspan="2"><input name="phone" type="text" size="30" onkeypress="return numere(event)" onkeyup="return limitarelungime(this, 10)"  /></td>
+						</tr>
+						<tr>
+							<td>Message Priority </td>
+							<td colspan="2">
+								<select name="mpriority">
+									<option selected="selected">Normal</option>
+									<option>Low</option>
+									<option>High</option>
+									<option>Urgent</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Subject *</td>
+							<td colspan="2"><input name="subject" type="text" size="30" /></td>
+						</tr>
+						<tr>
+							<td>Message *</td>
+							<td colspan="2"><textarea name="message" onkeyup="return limitarelungime(this, 255)"  cols="35" rows="5"></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="reset" name="reset" value="Reset"/></td>
+							<td align="right"><input type="submit" name="Submit" value="Submit"></td>
+							<td align="right"></td>
+						</tr>
+					</table>
+				</form>
+			</article>
+		</div><!-- // end #content -->
+		<aside id="sidebar">
+			<article>
+				<h2>Phone</h2>
+				<p>+1 281-250-0448</p>
+			</article>
+			<article>
+				<h2></h2>
+				<p></p>
+			</article>
+		</aside><!-- // end #sidebar -->
+	</div><!-- // end #main-body -->
+	<footer id="footer">
+		<span class="fl"><a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a></span>
+		<span class="fr">Copyright &copy; <strong>Peter Velez Engineering LLC</strong>. All right reserved.</span>
+	</footer><!-- // end #footer -->
+</div><!-- // end #wrapper -->
+</body>
+</html>
